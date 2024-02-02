@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Submission Success</title>
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #5a3f37, #2c7744);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.success-container {
+    background: linear-gradient(to right, #5a3f37, #2c7744);
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+h1, h3 {
+    text-align: center;
+    color: white;
+}
+
+.img-thumbnail {
+    margin-top: 20px;
+    max-width: 70%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+</style>
+</head>
+<body>
+<div class="success-container">
+    <h1>Congratulations!</h1>
+    {% if obj %}
+    <h3>Successfully uploaded: {{ obj.date }}</h3>
+    <p>Prediction: {{ result }}</p>
+    <img src="{{ obj.image.url }}" alt="image" class="img-thumbnail">
+    {% endif %}
+</div>
+</body>
+</html>

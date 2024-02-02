@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Unexpected Visitor</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #5a3f37, #2c7744);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .title-container {
+    background: linear-gradient(to right, #5a3f37, #2c7744);
+    border: 2px solid #ffd700;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+  }
+
+  .title {
+    text-align: center;
+    font-size: 28px;
+    color: white;
+  }
+
+  .upload-form {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  #submit-btn {
+    background-color: #ffcc00;
+    color: #2c7744;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  #submit-btn:hover {
+    background-color: #ffd700;
+  }
+
+  input[type="file"],
+  input[type="date"] {
+    padding: 12px;
+    border: 2px solid #ffd700;
+    border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #2c7744;
+    background-color: #fff; /* Light background color */
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="file"]:hover,
+  input[type="date"]:hover,
+  input[type="file"]:focus,
+  input[type="date"]:focus {
+    border-color: #ffcc00; /* Highlight border color on hover/focus */
+  }
+
+  .upload-form p {
+    margin: 10px 0;
+  }
+
+  .upload-form label {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <div class="title-container">
+    <div class="title">
+      <h1>An Unexpected Visitor?</h1>
+      <p>Upload an image of a snake to find out whether it's poisonous or not</p>
+    </div>
+  </div>
+  <form class="upload-form" action="{% url 'snake_app:submit' %}" method='post' enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <label for="id_image">Snake Image:</label>
+      {{ form.image }}
+        <div style="display: none;">  <!-- This div is hidden -->
+          {{ form.image.value|default:'' }}
+      </div>
+    </div>
+    <div>
+      <label for="id_date">Date:</label>
+      {{ form.date }}
+    </div>
+    <input type="submit" value="Submit" id="submit-btn">
+  </form>
+</body>
+</html>
+
+
+
